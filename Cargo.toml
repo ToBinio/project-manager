@@ -6,6 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.71"
 clap = { version = "4.2.7", features = ["cargo"] }
+crossterm = "0.26.1"
+fuzzy-matcher = "0.3.7"
 serde = { version = "1.0.162", features = ["derive"] }
 toml = "0.7.3"
