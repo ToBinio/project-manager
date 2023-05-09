@@ -5,13 +5,10 @@ mod project;
 
 use crate::config::Config;
 use crate::display::Display;
-use clap::builder::Str;
-use clap::{command, ArgMatches, Command};
-use serde::{Deserialize, Serialize};
+use clap::command;
 use std::{env, fs};
-use std::io::Error;
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     let mut config = match fs::read_to_string("./Test.toml") {
         Ok(data) => toml::from_str(&data).expect("i dont think so :)"),
         Err(_err) => {
@@ -36,7 +33,7 @@ fn main() {
     } else {
         let display = Display::new(&config);
 
-        display.start();
+        display.start()?;
     }
 
     fs::write(
@@ -44,4 +41,6 @@ fn main() {
         toml::to_string(&config).expect("could not parse"),
     )
     .expect("could not write file");
+
+    Ok(())
 }

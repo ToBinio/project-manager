@@ -1,6 +1,5 @@
 use crate::Config;
-use clap::builder::Str;
-use clap::{arg, command, Arg, ArgMatches, Command};
+use clap::{Arg, ArgMatches, Command};
 
 pub fn cli() -> Command {
     Command::new("add").arg(Arg::new("PATH").short('p').long("path"))

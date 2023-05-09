@@ -1,14 +1,12 @@
 use crate::config::Config;
 use crate::project::Project;
 use crossterm::cursor::MoveTo;
-use crossterm::event::{read, Event, KeyCode, KeyEvent, KeyEventKind};
+use crossterm::event::{read, Event, KeyCode, KeyEventKind};
 use crossterm::execute;
 use crossterm::style::{Print, StyledContent, Stylize};
 use crossterm::terminal::{size, Clear, ClearType};
 use fuzzy_matcher::skim::SkimMatcherV2;
-use std::any::Any;
 use std::fs;
-use std::fs::FileType;
 use std::io::stdout;
 use std::path::PathBuf;
 
@@ -21,7 +19,8 @@ impl Display {
         let mut projects = vec![];
 
         for path in &config.project_paths {
-            let dir = fs::read_dir(path.clone()).expect(&format!("could not find path {}", path));
+            let dir = fs::read_dir(path.clone())
+                .unwrap_or_else(|_| panic!("could not find path {}", path));
 
             Project::from_dir(dir, PathBuf::from(path), &mut projects);
         }

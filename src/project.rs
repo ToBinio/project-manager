@@ -1,4 +1,3 @@
-use clap::builder::Str;
 use std::fs;
 use std::fs::ReadDir;
 use std::path::PathBuf;
@@ -21,8 +20,8 @@ impl Project {
             if metadata.is_dir() {
                 if entry.file_name() == ".idea" {
                     projects.push(Project {
-                        path: path.to_path_buf(),
                         name: path.file_name().unwrap().to_str().unwrap().to_string(),
+                        path,
                     });
                     return;
                 }
