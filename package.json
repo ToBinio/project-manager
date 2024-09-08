@@ -1,19 +1,22 @@
 {
-  "name": "project-manager",
+  "name": "nuxt-app",
   "private": true,
-  "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
     "tauri": "tauri"
   },
   "dependencies": {
     "@tauri-apps/api": ">=2.0.0-rc.0",
     "@tauri-apps/plugin-dialog": "^2.0.0-rc",
     "@tauri-apps/plugin-shell": ">=2.0.0-rc.0",
-    "vue": "^3.3.4"
+    "nuxt": "^3.13.0",
+    "vue": "latest",
+    "vue-router": "latest"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
