@@ -1,11 +1,11 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage/>
-  </NuxtLayout>
+  <Projects/>
 </template>
 
 <style scoped>
+
 </style>
