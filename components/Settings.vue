@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useSettings} from "../composable/useSettings.ts";
+import {useSettings} from "~/composables/useSettings.ts";
 import {open} from "@tauri-apps/plugin-dialog";
 
 let settings = await useSettings()
