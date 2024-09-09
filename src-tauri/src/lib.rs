@@ -1,7 +1,8 @@
+mod apps;
 mod commands;
 mod error;
-mod settings;
 mod fs;
+mod settings;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
