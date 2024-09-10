@@ -3,6 +3,7 @@ import {ref, watch} from "vue";
 
 export type Settings = {
     path: String | null
+    apps: App[]
 }
 
 export async function useSettings() {

@@ -1,4 +1,5 @@
 use crate::error::Result;
+use applications::App;
 use directories::ProjectDirs;
 use serde::{Deserialize, Serialize};
 use std::fs;
@@ -7,7 +8,10 @@ use std::path::PathBuf;
 
 #[derive(Deserialize, Serialize, Default)]
 pub struct Settings {
+    #[serde(default)]
     pub path: Option<PathBuf>,
+    #[serde(default)]
+    pub apps: Vec<App>,
 }
 
 pub fn get_settings() -> Result<Settings> {

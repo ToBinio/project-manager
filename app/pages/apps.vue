@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {convertFileSrc} from "@tauri-apps/api/core";
+import AppList from "~/components/apps/AppList.vue";
 
 let apps = await useApps()
 
@@ -12,17 +12,12 @@ let filteredApps = computed(() => {
 })
 
 
-
 </script>
 
 <template>
   <input class="border-2 rounded-md mx-5 my-3" type="text" v-model="searchText">
 
-  <div :key="app.name" v-for="app of filteredApps" class="mx-5 py-2">
-    <img :src="convertFileSrc(app.icon_path)">
-    <h2 class="font-bold"> {{ app.name }}</h2>
-    <div> {{ app }}</div>
-  </div>
+  <AppList :apps="filteredApps"/>
 </template>
 
 <style scoped>
