@@ -3,11 +3,12 @@ import {ref, watch} from "vue";
 import type {Settings} from "~/composables/useSettings";
 
 export type Project = {
-    path: String | null
+    name: String
+    path: String
 }
 
 export async function useProjects(settings: Ref<Settings>) {
-    let projects = useState<String[]>("projects");
+    let projects = useState<Project[]>("projects");
 
     await callOnce(async () => {
         projects.value = await invoke("get_projects", {settings: settings.value})

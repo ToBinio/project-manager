@@ -1,7 +1,7 @@
 mod apps;
 mod commands;
 mod error;
-mod fs;
+mod projects;
 mod settings;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
