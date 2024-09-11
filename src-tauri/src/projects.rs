@@ -13,6 +13,10 @@ pub struct Project {
 }
 
 pub fn get_projects(settings: Settings) -> error::Result<Vec<Project>> {
+    if settings.path.is_none() {
+        return Ok(vec![]);
+    }
+    
     let names = read_dir(settings.path.unwrap_or_default())?
         .filter_map(Result::ok)
         .filter(|dir| dir.file_name().into_string().is_ok())
