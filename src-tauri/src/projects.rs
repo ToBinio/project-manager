@@ -2,7 +2,6 @@ use crate::error;
 use crate::settings::Settings;
 use applications::App;
 use serde::{Deserialize, Serialize};
-use std::ffi::OsStr;
 use std::fs::read_dir;
 use std::path::PathBuf;
 use std::process::{Command, Stdio};
