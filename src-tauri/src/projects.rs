@@ -32,7 +32,7 @@ pub fn get_projects(settings: Settings) -> error::Result<Vec<Project>> {
 pub fn run_project(project: Project, app: App) {
     //TODO - https://github.com/HuakunShen/applications-rs/issues/5
     let exec = app.app_path_exe.unwrap().to_str().unwrap().to_owned();
-    let exec = exec.replace("%u", "").replace("\"", "").trim().to_string();
+    let exec = exec.replace("%u", "").replace("%F", "").replace("%U", "").replace("%f", "").replace("\"", "").trim().to_string();
 
     Command::new(exec)
         .arg(project.path.to_str().unwrap())
