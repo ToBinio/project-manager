@@ -6,8 +6,6 @@ defineProps<{ apps: App[] }>()
 let settings = await useSettings()
 
 function onSetState(app: App, newState: boolean) {
-  console.log(newState);
-
   if (newState) {
     settings.value.apps.push(app)
   } else {

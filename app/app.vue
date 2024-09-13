@@ -7,5 +7,8 @@
   </NuxtLayout>
 </template>
 
-<style scoped>
+<style>
+body {
+  background-color: rgb(24 24 27);
+}
 </style>

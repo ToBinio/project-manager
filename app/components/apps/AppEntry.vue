@@ -22,7 +22,10 @@ watch(active, () => {
       <h2 class="font-bold"> {{ app.name }}</h2>
       <div> {{ app }}</div>
     </div>
-    <input type="checkbox" v-model="active">
+    <button @click="active = !active">
+      <Icon v-if="active" name="ph:star-fill" size="24"/>
+      <Icon v-else name="ph:star" size="24"/>
+    </button>
   </div>
 </template>
 
