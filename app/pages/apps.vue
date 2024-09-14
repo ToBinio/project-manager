@@ -21,5 +21,7 @@ let filteredApps = computed(() => {
 </template>
 
 <style scoped>
-
+  * {
+    color: black;
+  }
 </style>
