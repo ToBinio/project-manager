@@ -5,6 +5,10 @@ import type {Settings} from "~/composables/useSettings";
 export type Project = {
     name: String
     path: String
+    metadata: ProjectMetaData
+}
+
+export type ProjectMetaData = {
     used: String[]
 }
 
