@@ -10,6 +10,7 @@ pub fn add_commands(app: Builder<Wry>) -> Builder<Wry> {
         settings::save_settings,
         projects::get_projects,
         projects::run_project,
+        projects::get_project_metadata,
         apps::get_all_apps,
     ])
 }

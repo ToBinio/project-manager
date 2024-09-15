@@ -15,7 +15,7 @@ pub struct Settings {
 }
 
 pub fn get_settings() -> Result<Settings> {
-    let config_path = get_config_path()?;
+    let config_path = get_config_file_path()?;
     if config_path.exists().not() {
         return Ok(Settings::default());
     }
@@ -25,7 +25,7 @@ pub fn get_settings() -> Result<Settings> {
 }
 
 pub fn save_settings(settings: Settings) -> Result<()> {
-    let config_path = get_config_path()?;
+    let config_path = get_config_file_path()?;
 
     fs::create_dir_all(&config_path.parent().ok_or_else(|| "No Parent found")?)?;
     fs::write(config_path, serde_json::to_string(&settings)?)?;
@@ -33,9 +33,13 @@ pub fn save_settings(settings: Settings) -> Result<()> {
     Ok(())
 }
 
-fn get_config_path() -> Result<PathBuf> {
+fn get_config_file_path() -> Result<PathBuf> {
+    Ok(get_config_dir_path()?.join("settings.json"))
+}
+
+pub fn get_config_dir_path() -> Result<PathBuf> {
     let dirs = ProjectDirs::from("at", "tobinio", "Project Manager")
         .ok_or_else(|| "Invalid Project Dirs")?;
 
-    Ok(dirs.config_dir().to_path_buf().join("settings.json"))
+    Ok(dirs.config_dir().to_path_buf())
 }

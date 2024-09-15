@@ -8,22 +8,15 @@ let settings = await useSettings()
 
 const apps = computed(() => {
   return settings.value.apps.filter((app) => {
-    return props.project.used.includes(app.name);
+    return props.project.metadata.used.includes(app.name);
   })
 })
 
 async function onRunProject(app: App) {
   await invoke("run_project", {project: props.project, app: app})
-}
 
-function addToUsed(app: App) {
-  if (props.project.used.includes(app.name)) return
-
-  if (props.project.used.length >= 3) {
-    props.project.used.splice(0, 1)
-  }
-
-  props.project.used.push(app.name)
+  let metadata = await invoke("get_project_metadata", {project: props.project})
+  props.project.metadata = metadata;
 }
 </script>
 
@@ -47,10 +40,7 @@ function addToUsed(app: App) {
 
         <div class="group-hover:block hidden absolute w-max">
           <div class="mt-2 bg-zinc-600 p-2 rounded-lg flex flex-col gap-2">
-            <button v-for="app of settings.apps" :key="app.name" :value="app" @click="() => {
-                addToUsed(app)
-                onRunProject(app)
-            }">
+            <button v-for="app of settings.apps" :key="app.name" :value="app" @click="() => onRunProject(app)">
               <div class="flex gap-2 hover:scale-105 transition">
                 <AppIcon :app="app"/>
                 <div>
