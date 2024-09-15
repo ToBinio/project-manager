@@ -4,7 +4,7 @@
 
 <template>
   <div class="text-gray-100">
-    <div class="bg-zinc-900 fixed h-14 w-full flex items-center gap-3 pl-2 font-medium">
+    <div class="bg-zinc-900 fixed h-14 w-full flex items-center gap-3 pl-2 font-medium z-50">
       <NuxtLink class="px-4 py-0.5 bg-zinc-700 rounded-md hover:bg-zinc-600 transition" to="/">Projects</NuxtLink>
       <NuxtLink class="px-4 py-0.5 bg-zinc-700 rounded-md hover:bg-zinc-600 transition" to="/settings">Settings</NuxtLink>
       <NuxtLink class="px-4 py-0.5 bg-zinc-700 rounded-md hover:bg-zinc-600 transition" to="/apps">Apps</NuxtLink>

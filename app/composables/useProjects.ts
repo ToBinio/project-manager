@@ -6,7 +6,6 @@ export type Project = {
     name: String
     path: String
     used: String[]
-    selected: String
 }
 
 export async function useProjects(settings: Ref<Settings>) {
@@ -19,11 +18,6 @@ export async function useProjects(settings: Ref<Settings>) {
             projects.value = await invoke("get_projects", {settings: settings.value})
         }, {deep: true})
     })
-
-    projects.value.forEach(value => {
-        value.used = [];
-        value.selected = "Select an app"
-    })
-
+    
     return projects
 }

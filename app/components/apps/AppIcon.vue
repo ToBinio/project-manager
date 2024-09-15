@@ -8,7 +8,7 @@ defineProps<{ app: App }>()
 
 <template>
   <div>
-    <img v-if="app.icon_path" class="w-6" :src="convertFileSrc(app.icon_path)" :alt="app.name">
+    <img v-if="app.icon_path" class="w-8" :src="convertFileSrc(app.icon_path)" :alt="app.name">
     <div v-else>
       {{ app.name }}
     </div>
