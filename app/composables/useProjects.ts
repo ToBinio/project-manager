@@ -6,6 +6,7 @@ export type Project = {
     name: String
     path: String
     used: String[]
+    selected: String
 }
 
 export async function useProjects(settings: Ref<Settings>) {

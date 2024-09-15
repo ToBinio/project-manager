@@ -13,8 +13,8 @@ function addToUsed(project: Project, app: App) {
   project.used.push(app.name)
 }
 
-function removeFromUsed(project, app) {
-  project.used = project.used.filter((usedApp) => usedApp.name !== app.name);
+function removeFromUsed(project: Project, app: App) {
+  project.used.splice(project.used.indexOf(app.name), 1);
 }
 </script>
 
@@ -24,27 +24,28 @@ function removeFromUsed(project, app) {
 
     <div class="flex gap-1">
       <div v-for="app of settings.apps">
-        <button v-if="project.used.includes(app.name)" @click="() => addToUsed(project, app)" :key="app.name"
+        <button v-if="project.used.includes(app.name)"
+                @click="() => onRunProject(project, app)"
+                :key="app.name"
                 class="hover:scale-125 transition">
           <SmallAppEntry :app="app"/>
+        </button>
+        <button v-if="project.used.includes(app.name)"
+                @click="() => removeFromUsed(project, app)">del
         </button>
       </div>
     </div>
 
-    <div>
-      <select @change="(event) => {
-        let app = JSON.parse(event.target.value);
-
-        addToUsed(project, app);
-        onRunProject(project, app);
+    <select v-model="project.selected" @change="() => {
+        addToUsed(project, project.selected);
+        onRunProject(project, project.selected);
       }">
-        <option disabled selected>Select an app</option>
-        <option :disabled="project.used.includes(app.name)" v-for="app of settings.apps" :key="app.name"
-                :value="JSON.stringify(app)">
-          {{ app.name }}
-        </option>
-      </select>
-    </div>
+      <option disabled selected>Select an app</option>
+
+      <template v-for="app of settings.apps" :key="app.name">
+        <option v-if="!project.used.includes(app.name)" :value="app">{{ app.name }}</option>
+      </template>
+    </select>
   </div>
 </template>
 
