@@ -10,6 +10,7 @@ use std::process::{Command, Stdio};
 pub struct Project {
     name: String,
     path: PathBuf,
+    used: Vec<String>,
 }
 
 pub fn get_projects(settings: Settings) -> error::Result<Vec<Project>> {
@@ -24,6 +25,7 @@ pub fn get_projects(settings: Settings) -> error::Result<Vec<Project>> {
         .map(|dir| Project {
             path: dir.path(),
             name: dir.file_name().into_string().unwrap(),
+            used: vec![],
         })
         .collect();
 

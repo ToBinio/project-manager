@@ -5,6 +5,7 @@ import type {Settings} from "~/composables/useSettings";
 export type Project = {
     name: String
     path: String
+    used: String[]
 }
 
 export async function useProjects(settings: Ref<Settings>) {
@@ -17,6 +18,6 @@ export async function useProjects(settings: Ref<Settings>) {
             projects.value = await invoke("get_projects", {settings: settings.value})
         }, {deep: true})
     })
-
+    
     return projects
 }
