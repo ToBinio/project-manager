@@ -3,23 +3,23 @@ import AppList from "~/components/apps/AppList.vue";
 
 let apps = await useApps()
 
-let searchText = ref("")
-
+let searchText = ref("");
 let filteredApps = computed(() => {
   return apps.value
       .sort((a, b) => a.name.localeCompare(b.name))
       .filter(app => app.name.toUpperCase().includes(searchText.value.toUpperCase()))
 })
-
-
 </script>
 
 <template>
-  <input class="border-2 rounded-md mx-5 my-3" type="text" v-model="searchText">
+  <div class="bg-zinc-900 fixed w-full">
+    <SearchInput v-model:text="searchText"/>
+  </div>
 
-  <AppList :apps="filteredApps"/>
+  <div class="mt-9">
+    <AppList :apps="filteredApps"/>
+  </div>
 </template>
 
 <style scoped>
-
 </style>
