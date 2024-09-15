@@ -23,8 +23,8 @@ watch(active, () => {
       <div> {{ app }}</div>
     </div>
     <button @click="active = !active">
-      <Icon v-if="active" name="ph:star-fill" size="24"/>
-      <Icon v-else name="ph:star" size="24"/>
+      <Icon mode="svg" v-if="active" name="ph:star-fill" size="24"/>
+      <Icon mode="svg" v-else name="ph:star" size="24"/>
     </button>
   </div>
 </template>
