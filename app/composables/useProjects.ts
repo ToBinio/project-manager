@@ -20,7 +20,10 @@ export async function useProjects(settings: Ref<Settings>) {
         }, {deep: true})
     })
 
-    projects.value.forEach(value => value.used = [])
+    projects.value.forEach(value => {
+        value.used = [];
+        value.selected = "Select an app"
+    })
 
     return projects
 }
