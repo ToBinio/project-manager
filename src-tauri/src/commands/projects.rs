@@ -12,8 +12,8 @@ pub fn get_projects(settings: Settings) -> Result<Vec<Project>, String> {
 }
 
 #[tauri::command]
-pub fn run_project(mut project: Project, mut app: App) {
-    crate::projects::run_project(&mut project, &mut app)
+pub fn run_project(mut project: Project, app: App) {
+    crate::projects::run_project(&mut project, &app)
 }
 
 #[tauri::command]
