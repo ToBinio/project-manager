@@ -30,6 +30,13 @@ pub fn get_projects(settings: Settings) -> error::Result<Vec<Project>> {
         .filter_map(Result::ok)
         .filter(|e| e.path().is_dir())
         .filter(|dir| dir.file_name().into_string().is_ok())
+        .sorted_by(|dir1, dir2| {
+            dir2.metadata()
+                .unwrap()
+                .modified()
+                .unwrap()
+                .cmp(&dir1.metadata().unwrap().modified().unwrap())
+        })
         .map(|dir| {
             let name = dir.file_name().into_string().unwrap();
             Project {
