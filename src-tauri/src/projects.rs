@@ -4,7 +4,7 @@ use applications::App;
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
 use std::fs;
-use std::fs::{read_dir, read_to_string};
+use std::fs::read_dir;
 use std::ops::Not;
 use std::path::PathBuf;
 use std::process::{Command, Stdio};
@@ -57,11 +57,7 @@ pub fn get_metadata(project_name: &str) -> error::Result<ProjectMetaData> {
 pub fn save_metadata(project_name: &str, metadata: &ProjectMetaData) -> error::Result<()> {
     let metadata_file_path = get_metadata_path(project_name)?;
 
-    fs::create_dir_all(
-        &metadata_file_path
-            .parent()
-            .ok_or_else(|| "No Parent found")?,
-    )?;
+    fs::create_dir_all(metadata_file_path.parent().ok_or("No Parent found")?)?;
     fs::write(metadata_file_path, serde_json::to_string(metadata)?)?;
 
     Ok(())
