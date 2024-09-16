@@ -16,7 +16,7 @@ let filteredApps = computed(() => {
     <SearchInput v-model:text="searchText"/>
   </div>
 
-  <div class="mt-9">
+  <div class="mt-12">
     <AppList :apps="filteredApps"/>
   </div>
 </template>
