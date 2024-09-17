@@ -7,8 +7,8 @@ const props = defineProps<{ project: Project }>()
 let settings = await useSettings()
 
 const apps = computed(() => {
-  return settings.value.apps.filter((app) => {
-    return props.project.metadata.used.includes(app.name);
+  return props.project.metadata.used.map((app) => {
+    return settings.value.apps.find(value => value.name == app);
   })
 })
 
